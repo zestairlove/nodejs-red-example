@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-red-metric-example",
+  "version": "1.0.0",
+  "description": "```bash # npm start nodejs server",
+  "main": "index.js",
+  "scripts": {
+    "start:app": "node ./nodejs-red-example/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

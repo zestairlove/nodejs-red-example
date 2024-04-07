@@ -1,0 +1,30 @@
+version: '3'
+
+volumes:
+  red_example_prometheus: {}
+  red_example_grafana: {}
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+      - red_example_prometheus:/prometheus
+    ports:
+      - '9090:9090'
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - red_example_grafana:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    ports:
+      - 3000:3000
+    #environment:
+    #  - GF_INSTALL_PLUGINS=grafana-polystat-panel
